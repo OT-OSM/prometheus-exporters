@@ -65,7 +65,7 @@ Here is an example playbook:-
   user: ubuntu
   become: yes
   roles:
-    - iamabhishek-dubey.ansible-role-prometheus-exporters
+    - opstree_devops.prometheus-exporters
 ```
 
 ## Usage
