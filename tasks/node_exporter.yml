@@ -13,7 +13,7 @@
 
 - name: Move Binary to appropriate path
   copy:
-    src: "/tmp/{{ node_exporter_dest_package }}"
+    src: "/tmp/{{ node_exporter_dest_package }}/node_exporter"
     dest: /usr/local/bin/
     remote_src: yes
     mode: 0555

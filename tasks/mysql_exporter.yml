@@ -13,7 +13,7 @@
 
 - name: Copy mysqld-exporter to appropriate path
   copy:
-    src: "/tmp/{{ mysql_dest_package_name }}"
+    src: "/tmp/{{ mysql_dest_package_name }}/mysqld_exporter"
     dest: /usr/local/bin/
     remote_src: yes
     mode: 0555
