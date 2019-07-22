@@ -1,6 +1,6 @@
 ---
-- hosts: {{ host }}
-  user: {{ user }}
+- hosts: "{{ host }}"
+  user: "{{ user }}"
   become: yes
   roles:
     - opstree_devops.prometheus_exporters
