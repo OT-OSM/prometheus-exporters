@@ -4,20 +4,16 @@
     name: prom
     shell: /sbin/nologin
 
-- name: Setting internal variables for convinience
-  set_fact:
-    base_url: "https://github.com/prometheus/mysqld_exporter/releases/download"
-
 - name: Downloading and unarchiving the mysqld exporter
   unarchive:
-    src: "{{ base_url }}/v{{ mysql_exporter_version }}/mysqld_exporter-{{ mysql_exporter_version }}.linux-amd64.tar.gz"
+    src: "{{ mysql_exporter_download_url }}"
     dest: /tmp
     remote_src: yes
     mode: 0755
 
 - name: Copy mysqld-exporter to appropriate path
   copy:
-    src: /tmp/mysqld_exporter-{{ mysql_exporter_version }}.linux-amd64/mysqld_exporter
+    src: "/tmp/{{ mysql_dest_package_name }}"
     dest: /usr/local/bin/
     remote_src: yes
     mode: 0555

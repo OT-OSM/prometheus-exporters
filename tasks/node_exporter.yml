@@ -4,20 +4,16 @@
     name: prom
     shell: /sbin/nologin
 
-- name: Setting internal variables for convinience
-  set_fact:
-    base_url: "https://github.com/prometheus/node_exporter/releases/download"
-
 - name: Download and Unarchive the Node Exporter
   unarchive:
-    src: "{{ base_url }}/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz"
+    src: "{{ node_exporter_download_url }}"
     dest: "/tmp"
     remote_src: yes
     mode: 0755
 
 - name: Move Binary to appropriate path
   copy:
-    src: "/tmp/node_exporter-{{ node_exporter_version }}.linux-amd64/node_exporter"
+    src: "/tmp/{{ node_exporter_dest_package }}"
     dest: /usr/local/bin/
     remote_src: yes
     mode: 0555
