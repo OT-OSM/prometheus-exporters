@@ -8,7 +8,8 @@
 - include_tasks: "apache_exporter.yml"
   when:  exporter_name == 'apache'
 
-- include_tasks: "mongodb_exporter.yml"
+    #- block:
+- include_tasks: "check_mongodb.yml"
   when:  exporter_name == 'mongodb'
 
 - include_tasks: "nginx_exporter.yml"

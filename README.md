@@ -77,6 +77,22 @@ For running multiple exporter on same host you can use
 ```shell
 ansible-playbook -i hosts site.yml -e exporter_name=["node", "apache"]
 ```
+For running mongo exporter
+```shell
+ansible-playbook -i hosts site.yml  --extra-vars "@extra_vars.json"
+```
+
+Usage of extra_vars.json
+```shell
+{
+	"exporter_name":  "mongodb",
+	"mongodb_admin_user": "admin",
+        "mongodb_admin_password": "Opstree@123",
+        "mongodb_exporter_user_password": "opstree123"
+
+}
+```
+
 
 Values of **exporter_name** could be:-
 
