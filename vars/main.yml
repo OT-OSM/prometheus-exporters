@@ -21,7 +21,7 @@ es_url: "localhost"
 es_port: "9200"
 
 #### Variables for MongoDB Exporter ####
-mongodb_exporter: "1.0.0"
+mongodb_exporter: "0.32.0"
 
 #### Variables for Nginx Exporter ####
 nginx_exporter: "0.2.0"

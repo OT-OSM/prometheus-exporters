@@ -19,7 +19,11 @@ es_url: "localhost"
 es_port: "9200"
 
 #### Variables for MongoDB Exporter ####
-mongodb_exporter: "1.0.0"
+mongodb_exporter_version: 0.32.0
+mongodb_exporter_dir: "mongodb_exporter-{{ mongodb_exporter_version }}.linux-amd64"
+mongodb_exporter_url: "https://github.com/percona/mongodb_exporter/releases/download/v{{ mongodb_exporter_version }}/{{ mongodb_exporter_dir }}.tar.gz"
+mongodb_host: "127.0.0.1"
+mongodb_port: "27017"
 
 #### Variables for Nginx Exporter ####
 nginx_exporter: "0.2.0"
