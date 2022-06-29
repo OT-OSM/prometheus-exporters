@@ -24,6 +24,10 @@ mongodb_exporter_dir: "mongodb_exporter-{{ mongodb_exporter_version }}.linux-amd
 mongodb_exporter_url: "https://github.com/percona/mongodb_exporter/releases/download/v{{ mongodb_exporter_version }}/{{ mongodb_exporter_dir }}.tar.gz"
 mongodb_host: "127.0.0.1"
 mongodb_port: "27017"
+mongodb_admin_user: "admin"
+mongodb_admin_password: "Opstree@123"
+mongodb_exporter_user_password: "opstree123"
+
 
 #### Variables for Nginx Exporter ####
 nginx_exporter: "0.2.0"
