@@ -17,6 +17,7 @@ GRANT PROCESS, REPLICATION CLIENT,
 SELECT ON *.* TO 'exporter'@'localhost' WITH MAX_USER_CONNECTIONS 3;
 FLUSH PRIVILEGES;
 ```
+---
 For **[MongoDB Exporter](https://github.com/percona/mongodb_exporter)**, Create a user in mongodb with these privileges
 ```m
 db.createUser( { 
@@ -86,6 +87,8 @@ For using this role you have to pass one variable to role which is **exporter_na
 ansible-playbook -i hosts site.yml -e exporter_name="node"
 ```
 
+### **Note**: For MongoDB exporter use this configs
+
 For now use latest version to run mongo exporter
 ```shell
 ansible-playbook -i hosts site.yml  --extra-vars "@extra_vars.json"
@@ -96,9 +99,9 @@ extra_vars.json [ change versions according to you ]
 {
 	"exporter_name":  "mongodb",
 	"mongodb_admin_user": "admin",
-    "mongodb_admin_password": "Opstree@123",
-    "mongodb_exporter_user_password": "opstree123",
-    "mongodb_exporter_dir": "mongodb_exporter-0.32.0.linux-amd64",
+        "mongodb_admin_password": "Opstree@123",
+        "mongodb_exporter_user_password": "opstree123",
+        "mongodb_exporter_dir": "mongodb_exporter-0.32.0.linux-amd64",
 	"mongodb_exporter_url": "https://github.com/percona/mongodb_exporter/releases/download/v0.32.0/mongodb_exporter-0.32.0.linux-amd64.tar.gz"
 
 }
