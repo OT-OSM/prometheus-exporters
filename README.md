@@ -3,7 +3,7 @@ An ansible role which contains multiple exporters of prometheus for scrapping da
 - **[Apache Exporter](https://github.com/Lusitaniae/apache_exporter)**
 - **[Elasticsearch Exporter](https://github.com/justwatchcom/elasticsearch_exporter)**
 - **[Kafka Exporter](https://github.com/danielqsj/kafka_exporter)**
-- **[MongoDB Exporter](https://github.com/dcu/mongodb_exporter)**
+- **[MongoDB Exporter](https://github.com/percona/mongodb_exporter)**
 - **[MySQL Exporter](https://github.com/prometheus/mysqld_exporter)**
 - **[Nginx Exporter](https://github.com/nginxinc/nginx-prometheus-exporter)**
 - **[Node Exporter](https://github.com/prometheus/node_exporter)**
@@ -16,6 +16,18 @@ CREATE USER 'exporter'@'localhost' IDENTIFIED BY 'password';
 GRANT PROCESS, REPLICATION CLIENT,
 SELECT ON *.* TO 'exporter'@'localhost' WITH MAX_USER_CONNECTIONS 3;
 FLUSH PRIVILEGES;
+```
+---
+For **[MongoDB Exporter](https://github.com/percona/mongodb_exporter)**, Create a user in mongodb with these privileges
+```m
+db.createUser( { 
+    user: "mongodb_exporter", 
+    pwd: "opstree123", roles: 
+    [ 
+        { role: "clusterMonitor", db: "admin" }, 
+        { role: "read", db: "your_database" }
+    ] 
+  } )
 ```
 ---
 For **[Nginx Exporter](https://github.com/nginxinc/nginx-prometheus-exporter)**, We have to enable **stub_status** in nginx configuration. In your Nginx Conf add this line to your **location** block
@@ -33,6 +45,7 @@ location / {
 |----------|---------|---------------|
 |**prometheus_mysqld_exporter_env** |'user:password@(hostname:port)/'|User, password, host and port for mysql-exporter|
 |**es_url** | localhost | Server IP of Elasticsearch|
+|**mongodb_port** | 27017 | Port on which Mongo_db service is listening|
 |**es_port** | 9200 | Port on which elasticsearch is listening|
 |**kafka_ip** | localhost | IP of the Kafka Server|
 |**kafka_port** | 9092 | Port number on which kafka is running|
@@ -73,22 +86,23 @@ For using this role you have to pass one variable to role which is **exporter_na
 ```shell
 ansible-playbook -i hosts site.yml -e exporter_name="node"
 ```
-For running multiple exporter on same host you can use
-```shell
-ansible-playbook -i hosts site.yml -e exporter_name=["node", "apache"]
-```
-For running mongo exporter
+
+### **Note**: For MongoDB exporter use this configs
+
+For now use latest version to run mongo exporter
 ```shell
 ansible-playbook -i hosts site.yml  --extra-vars "@extra_vars.json"
 ```
 
-Usage of extra_vars.json
+extra_vars.json [ change versions according to you ]
 ```shell
 {
 	"exporter_name":  "mongodb",
 	"mongodb_admin_user": "admin",
         "mongodb_admin_password": "Opstree@123",
-        "mongodb_exporter_user_password": "opstree123"
+        "mongodb_exporter_user_password": "opstree123",
+        "mongodb_exporter_dir": "mongodb_exporter-0.32.0.linux-amd64",
+	"mongodb_exporter_url": "https://github.com/percona/mongodb_exporter/releases/download/v0.32.0/mongodb_exporter-0.32.0.linux-amd64.tar.gz"
 
 }
 ```
