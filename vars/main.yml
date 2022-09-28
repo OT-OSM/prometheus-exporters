@@ -3,9 +3,7 @@
 db_root_password: "password"
 
 #### Variables for Node Exporter ####
-node_exporter_version: "0.17.0"
-node_exporter_download_url: ""
-node_exporter_dest_package: ""
+node_version: "0.18.1"
 
 #### Variables for Solr Exporter ####
 solr_exporter_version: "0.3.9"

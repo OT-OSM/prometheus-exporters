@@ -58,7 +58,7 @@ location / {
 
 |**Variables**| **Default Values**| **Description**|
 |--------------|-------------|-------------------|
-|**node_exporter_version** | 0.17.0 | Version of Node Exporter|
+|**node_version** | 0.17.0 | Version of Node Exporter|
 |**solr_exporter_version** | 0.3.9 | Version of Solr Exporter|
 |**apache_exporter** | 0.5.0 | Version of Apache Exporter|
 |**es_exporter** | 1.0.2 | Version of Elasticsearch Exporter|
@@ -121,5 +121,7 @@ Values of **exporter_name** could be:-
 |**kafka** | For Kafka Exporter |
 |**solr** | For Solr Exporter |
 
-## Author
+## Authors
 **[Abhishek Dubey](mailto:abhishek.dubey@opstree.com)**
+
+**[Varghese Kurian](mailto:varghese.palamoottil@opstree.com)**

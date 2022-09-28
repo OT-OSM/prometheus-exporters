@@ -4,18 +4,22 @@
     name: prom
     shell: /sbin/nologin
 
+- name: Checking wheter the system architecture
+  set_fact:
+    node_architecture: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+
 - name: Download and Unarchive the Node Exporter
   unarchive:
-    src: "{{ node_exporter_download_url }}"
+    src: "{{ base_url_node }}/v{{ node_version }}/node_exporter-{{ node_version }}.linux-{{ node_architecture }}.tar.gz"
     dest: "/tmp"
-    remote_src: yes
+    remote_src: true
     mode: 0755
 
 - name: Move Binary to appropriate path
   copy:
-    src: "/tmp/{{ node_exporter_dest_package }}/node_exporter"
+    src: "/tmp/node_exporter-{{ node_version }}.linux-{{ node_architecture }}/node_exporter"
     dest: /usr/local/bin/
-    remote_src: yes
+    remote_src: true
     mode: 0555
 
 - name: Create Node Exporter Service
@@ -27,10 +31,10 @@
 - name: Daemon reload for Node Exporter
   systemd:
     name: node-exporter
-    daemon_reload: yes
+    daemon_reload: true
 
 - name: Start and Enable Node Exporter service
   systemd:
     name: node-exporter
     state: started
-    enabled: yes
+    enabled: true
