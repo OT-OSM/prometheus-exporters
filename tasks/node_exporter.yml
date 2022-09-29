@@ -6,18 +6,18 @@
 
 - name: Checking wheter the system architecture
   set_fact:
-    node_architecture: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+    machine_architecture: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
 
 - name: Download and Unarchive the Node Exporter
   unarchive:
-    src: "{{ base_url_node }}/v{{ node_version }}/node_exporter-{{ node_version }}.linux-{{ node_architecture }}.tar.gz"
+    src: "{{ base_url_node }}/v{{ node_version }}/node_exporter-{{ node_version }}.linux-{{ machine_architecture }}.tar.gz"
     dest: "/tmp"
     remote_src: true
     mode: 0755
 
 - name: Move Binary to appropriate path
   copy:
-    src: "/tmp/node_exporter-{{ node_version }}.linux-{{ node_architecture }}/node_exporter"
+    src: "/tmp/node_exporter-{{ node_version }}.linux-{{ machine_architecture }}/node_exporter"
     dest: /usr/local/bin/
     remote_src: true
     mode: 0555
