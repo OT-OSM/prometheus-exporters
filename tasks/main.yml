@@ -8,6 +8,7 @@
 - include_tasks: "apache_exporter.yml"
   when:  exporter_name == 'apache'
 
+    #- block:
 - include_tasks: "mongodb_exporter.yml"
   when:  exporter_name == 'mongodb'
 
@@ -22,12 +23,3 @@
 
 - include_tasks: "solr_exporter.yml"
   when: exporter_name == 'solr'
-
-- include_tasks: "pm2_exporter.yml"
-  when: exporter_name == 'pm2'
-
-- include_tasks: "blackbox_exporter.yml"
-  when: exporter_name == 'blackbox'
-
-- include_tasks: "redis_exporter.yml"
-  when: exporter_name == 'redis'
